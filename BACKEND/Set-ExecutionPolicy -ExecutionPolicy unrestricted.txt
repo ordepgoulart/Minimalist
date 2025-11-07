@@ -1,0 +1,3 @@
+Set-ExecutionPolicy -ExecutionPolicy unrestricted
+
+Utilizar o NODEMON pfv

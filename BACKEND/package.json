@@ -1,0 +1,26 @@
+{
+  "name": "backend_clinica",
+  "version": "1.0.0",
+  "description": "Projeto do 2° bimestre de LPII, voltado a modelagem de um sistema web de consultas médicas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/index.js localhost 3000"
+  },
+  "keywords": [
+    "JS",
+    "CSS",
+    "HTML",
+    "BOOTSRAP",
+    "GIT",
+    "MONGO"
+  ],
+  "author": "Pedro Sá Goulart, Rafael Tintino Linhartes de Souza e Luis Vinícius Alves Monfré",
+  "license": "ISC",
+  "dependencies": {
+    "date-fns": "^4.1.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.19.2",
+    "nodemon": "^3.1.10"
+  }
+}
