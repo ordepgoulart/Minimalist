@@ -10,7 +10,7 @@ api.get('\teste', (req, resp)=>{
     resp.send('EPA');               
 })
 
-api.listen(3000, ()=>{
-    console.log("API online na rota: http://localhost:3000")
+api.listen(5000, ()=>{
+    console.log("API online na rota: http://localhost:5000")
 })
 
