@@ -1,11 +1,28 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import FiltrarConsulta from "../../components/ConsultaFiltrar";
 import * as Styl from "./styles"
 import ConsultaCartao from "../../components/ConsultaCartao";
+import api from '../../services/api.js'
+
+
+
 function Home() {
   const [filtroConsulta, atualizarFiltroAtivo] = useState('hoje')
+  const [consulta, atualizaConsulta] = useState([])
+  
+  async function carregarConsulta(){
+    await api.get(`consulta/${filtroConsulta}`)
+    .then(response=>{
+      atualizaConsulta(response.data)
+      console.log(response.data);
+    })
+  }
+
+  useEffect(()=>{
+    carregarConsulta()
+  }, [filtroConsulta])
 
 
   return (

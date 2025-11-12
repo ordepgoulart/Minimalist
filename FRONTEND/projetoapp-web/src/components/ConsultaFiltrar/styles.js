@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Container = styled.div `
     width : 300px;
     height: 100%;
-    background-color: ${prop=> prop.ativo ? '#22b14c': '#C0C0C0'};
+    background-color: ${prop=> prop.ativo=="true" ? '#22b14c': '#C0C0C0'};
     display: flex;
     border-radius: 5px;
     flex-direction: column;

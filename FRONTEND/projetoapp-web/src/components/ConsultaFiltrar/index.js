@@ -6,7 +6,7 @@ import filtro from "../../assets/filtro.png"
 
 function FiltrarConsulta({titulo, ativo}) {
   return (
-   <Styl.Container ativo={ativo}>
+   <Styl.Container ativo={ativo.toString()}>
       <img src={filtro} alt="Filtro" />
       <span>{titulo}</span>
    </Styl.Container>
