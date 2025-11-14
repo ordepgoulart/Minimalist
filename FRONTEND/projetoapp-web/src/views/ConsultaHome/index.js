@@ -11,6 +11,14 @@ import api from '../../services/api.js'
 function Home() {
   const [filtroConsulta, atualizarFiltroAtivo] = useState('hoje')
   const [consulta, atualizaConsulta] = useState([])
+  const [atrasadas, atualizaAtrasadas] = useState();
+
+  async function verificaAtrasadas() {
+    await api.get('/consulta/atrasadas')
+    .then(resp=>{
+      atualizaAtrasadas(resp.data.length)
+    })
+  }
   
   async function carregarConsulta(){
     await api.get(`consulta/${filtroConsulta}`)
@@ -20,14 +28,20 @@ function Home() {
     })
   }
 
+  function notificacao(){
+    atualizarFiltroAtivo('atrasadas')
+  }
+
+
   useEffect(()=>{
     carregarConsulta()
+    verificaAtrasadas()
   }, [filtroConsulta])
 
 
   return (
     <Styl.Container>
-      <Header />
+      <Header atrasadas={atrasadas} notificacaoClick={notificacao}/>
         <Styl.AreaFiltro>
           <button type="button" onClick={()=>atualizarFiltroAtivo("todos")}>
               <FiltrarConsulta titulo="Todas" ativo={filtroConsulta=="todas"}/>
@@ -49,10 +63,16 @@ function Home() {
           <h3>Consultas</h3>
         </Styl.Titulo>
         <Styl.Cartao>
-          <ConsultaCartao/>
-          <ConsultaCartao/>
-          <ConsultaCartao/>
-          <ConsultaCartao/>
+          {
+            consulta.map(x=>{
+              <ConsultaCartao
+              tipo={x.tipo}
+              paciente={x.paciente}
+              descricao={x.descricao}
+              data={x.data}
+              />
+            })
+          }
         </Styl.Cartao>
       <Footer />
     </Styl.Container>

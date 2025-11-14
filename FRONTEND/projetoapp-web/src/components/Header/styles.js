@@ -39,6 +39,12 @@ export const Dir = styled.div `
         }
     }
     
+    button{
+        cursor:pointer;
+        border:none;
+        background:none;
+    }
+
     #notificacao{
         img{
             widht: 50px;
