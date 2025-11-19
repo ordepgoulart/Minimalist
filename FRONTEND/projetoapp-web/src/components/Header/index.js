@@ -10,9 +10,11 @@ function Header({atrasadas, notificacaoClick}) {
         <img src={logo} alt="Logo"/>
       </Styl.Esq>
       <Styl.Dir>
-        <a href="#">Início</a>
+        <a href="/">Início</a>
         <span className="divisor"/>
-        <a href="#">Nova Consulta</a>
+        <a href="/">Pacientes</a>
+        <span className="divisor"/>
+        <a href="/formulario">Nova Consulta</a>
         <span className="divisor"/>
         <button type="button" onClick={notificacaoClick} id="notificacao">
           <img src={sino} alt="Notificação"/>

@@ -5,6 +5,7 @@ import FiltrarConsulta from "../../components/ConsultaFiltrar";
 import * as Styl from "./styles"
 import ConsultaCartao from "../../components/ConsultaCartao";
 import api from '../../services/api.js'
+import { Link } from "react-router-dom";
 
 
 
@@ -65,12 +66,14 @@ function Home() {
         <Styl.Cartao>
           {
             consulta.map(x=>{
-              <ConsultaCartao
-              tipo={x.tipo}
-              paciente={x.paciente}
-              descricao={x.descricao}
-              data={x.data}
-              />
+              <Link to={`/formulario/${x._id}`}>
+                <ConsultaCartao
+                tipo={x.tipo}
+                paciente={x.paciente}
+                descricao={x.descricao}
+                data={x.data}
+                />
+              </Link>
             })
           }
         </Styl.Cartao>

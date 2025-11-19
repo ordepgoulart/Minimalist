@@ -10,30 +10,14 @@ import tipoIcones from "../../utils/tipoIcone.js";
 
 
 function Detalhes() {
-  const [atrasadas, atualizaAtrasadas] = useState();
-  const [tipo, atualizarTipo] = useState();
 
   //Criar estados para armazenar os dados da consulta que vem do banco
   const [id, setId] = useState()
-  const [concluida, setConcluida] = useState(false)
-  const [paciente, setPaciente] = useState()
+  const [vinculo, setVinvulo] = useState('Plano de Saúde')
+  const [nome, setNome] = useState()
   const [descricao, setDescricao] = useState()
   const [dia, setDay] = useState()
   const [hora, setHour] = useState()
-
-  const {idC} = useParams()
-  async function carregarConsulta() {
-      await api.get(`/consulta/buscar/${idC}`)
-      .then(resp=>{
-          atualizarTipo(resp.data.tipo)
-          setPaciente(resp.data.paciente)
-          setDescricao(resp.data.descricao)
-          setDay(format(new Date(resp.data.data), 'yyyy-MM-dd'))
-          setHour(format(new Date(resp.data.data), 'HH:mm'))
-        }
-    )
-  }
-
 
   async function vetificaAtrasadas() {
     await api.get('/consulta/atrasadas')
@@ -42,10 +26,22 @@ function Detalhes() {
     })
   }
 
+  const {idC} = useParams()
+    async function carregarConsulta() {
+        await api.get(`/consulta/buscar/${idC}`)
+        .then(resp=>{
+            atualizarTipo(resp.data.tipo)
+            setPaciente(resp.data.paciente)
+            setDescricao(resp.data.descricao)
+            setDay(format(new Date(resp.data.dia), 'yyyy-MM-dd'))
+            setHour(format(new Date(resp.data.hora), 'HH:mm'))
+        })
+    }
+
   useEffect(()=>{
-    carregarConsulta();
+    carregarConsulta()
     vetificaAtrasadas()
-  }, [])
+  })
 
   async function salvar() {
         await api.post('/consulta',{
